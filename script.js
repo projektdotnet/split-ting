@@ -424,10 +424,10 @@
           megabytesPrice = 3;
           planType = 'Small';
         } else if (billTotal['megabytes'] > 105 && billTotal['megabytes'] < 526 ) {
-          megabytesPrice = 13;
+          megabytesPrice = 12;
           planType = 'Medium';
         } else if (billTotal['megabytes'] > 525 && billTotal['megabytes'] < 1051) {
-          megabytesPrice = 24;
+          megabytesPrice = 19;
           planType = 'Large';
         } else if (billTotal['megabytes'] > 1050 && billTotal['megabytes'] < 2001) {
           megabytesPrice = 29;
@@ -506,8 +506,8 @@
     var finalBillTotal = 0;
     finalBillTotal = parseFloat(billTotal['minutesTotal']) + parseFloat(billTotal['messagesTotal']) + parseFloat(billTotal['megabytesTotal']) + parseFloat(fees) + parseFloat(additionalFee);
     var finalHtml = '<tr><th>Final Bill Total</th><th>' + (Math.round(finalBillTotal * 100)/100) + '</th></tr>'; 
-    $('table#numbersFinalBillTotal > thead:last').append(finalHtml);
-    
+    $('table#numbersFinalBillTotal > thead:last').replaceWith(finalHtml);
+    $('table#numbersFinalBillTotal > tbody').html('');
     for (number in phoneNumbers) {
       var numbersMinutesBill = 0,
           numbersMessagesBill = 0,
@@ -540,4 +540,3 @@
       $('#finalBillTotalContainer').show();
     }
   }
-  
